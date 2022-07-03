@@ -1,37 +1,211 @@
-## Welcome to GitHub Pages
+---
+title: "Customer management technical guide"
+author: Dorota Wojcik
+date: 2022-06-29
+---
 
-You can use the [editor on GitHub](https://github.com/dorota-alina/customer-api/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## About customer management
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+As a Revolut Business customer, you can use the Merchant API to accept online payments (Card Not Present) by debit or credit cards, and also to manage the orders and customers.
 
-### Markdown
+## In this guide
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+You'll use the [Revolut Business Sandbox](https://sandbox-business.revolut.com/signin) environment to perform a few customer management operations using Merchant API:
 
-```markdown
-Syntax highlighted code block
+1. [Authenticate](#authenticate).
+2. [Create a new customer](#create-a-customer).
+3. [Retrieve the customer](#retrieve-the-customer).
+4. [Update the customer](#update-the-customer).
+5. [Delete the customer](#delete-the-customer).
 
-# Header 1
-## Header 2
-### Header 3
+## Before you start
 
-- Bulleted
-- List
+### Set up your sandbox account
 
-1. Numbered
-2. List
+Make sure you have an active Revolut Business Sandbox account. If not, [sign up for one](https://sandbox-business.revolut.com/signup)).
 
-**Bold** and _Italic_ and `Code` text
+### Authenticate to the sandbox
 
-[Link](url) and ![Image](src)
+1. Log in to your [Revolut Business Sandbox portal](https://sandbox-business.revolut.com/signin).
+2. In the top left corner, select your account name and, next, click **Merchant API**.
+3. From the **Production API key** field, copy the API key provided.
+
+   ![merchant api](merchant-api.png)
+
+***RESULT***
+
+You have your API key, which needs to be used as a value of the `Authorization` header of requests on your server side.
+
+### Identify a domain for endpoints
+
+Set the domain for your sandbox API calls to `sandbox-merchant.revolut.com/`.
+
+## Create a customer
+
+With your API key and domain, you can proceed to creating a new customer.
+
+Navigate to the [Create a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/createCustomer) reference for details on what is required to make a call for adding a customer.
+
+1. Identify the following:
+
+   * HTTP request method to be used (`POST`)
+   * `customer` endpoint string (`https://sandbox-merchant.revolut.com/api/1.0/customers`).
+   * Request body parameters (all strings):
+
+     * `full_name`
+     * `email`
+
+2. In your terminal, enter the request with the parameters and the headers properly configured. Execute it.
+
+```shell
+curl --request POST 'https://sandbox-merchant.revolut.com/api/1.0/customers' \
+--header 'Authorization: Bearer {enter-api-key-here}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "full_name": "John Doe",
+    "email": "john@doe.com"
+}'
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+***EXPECTED RESPONSE***
 
-### Jekyll Themes
+You are returned with JSON including multiple parameters of the newly-created customer.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dorota-alina/customer-api/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+#### Example response body
 
-### Support or Contact
+```json
+{
+  "id": "6c7c97a8-cfc1-4cf3-8b38-26a74fdf1fae",
+  "full_name": "John Doe",
+  "email": "john@doe.com",
+  "created_at": "2022-07-03T12:53:19.979397Z",
+  "updated_at": "2022-07-03T12:53:19.979397Z"
+}
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+***RESULT***
+
+Your new customer is visible in your [Revolut Business Sandbox portal](https://sandbox-business.revolut.com/signin).
+
+## Retrieve the new customer
+
+Navigate to the [Retrieve a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/retrieveCustomer) reference for details on what is required to make a call for retrieving your newly-created customer.
+
+1. Identify the following:
+
+   * HTTP request method to be used (`GET`)
+   * `customer` endpoint string (`https://sandbox-merchant.revolut.com/api/1.0/customers/{customer_id}`).
+   * Path parameter required (string): `customer_id`
+
+2. In your terminal, enter the request with the parameter and the header properly configured. Execute it.
+
+```shell
+curl --request GET 'https://sandbox-merchant.revolut.com/api/1.0/customers/{enter-customer_id-here}' \
+--header 'Authorization: Bearer {enter-api-key-here}'
+```
+
+***EXPECTED RESPONSE***
+
+You are returned with JSON including multiple parameters of the called customer.
+
+#### Example response body
+
+```json
+{
+  "id": "6c7c97a8-cfc1-4cf3-8b38-26a74fdf1fae",
+  "full_name": "John Doe",
+  "email": "john@doe.com",
+  "created_at": "2022-07-03T12:53:19.979397Z",
+  "updated_at": "2022-07-03T12:53:19.979397Z"
+}
+```
+
+***RESULT***
+
+You verified that your new customer had been created properly.
+
+## Update the customer
+
+Navigate to the [Update a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/updateCustomer) reference for details on what is required to make a call for updating your customer to
+
+* Set the value of `full_name` to `John Smith`.
+* Add `business_name` and set its value to `Revolut`.
+
+1. Identify the following:
+
+   * HTTP request method to be used (`PATCH`)
+   * `customer` endpoint string (`https://sandbox-merchant.revolut.com/api/1.0/customers/{customer_id}`).
+   * Path parameter required (string): `customer_id`
+   * Request body parameters (all strings):
+
+     ```json
+     {
+       "full_name": "John Smith",
+       "business_name": "Revolut",
+     }
+     ```
+
+2. In your terminal, enter the request with the parameters and the headers properly configured. Execute it.
+
+```shell
+curl --request PATCH 'https://sandbox-merchant.revolut.com/api/1.0/customers/{enter-customer_id-here}' \
+--header 'Authorization: Bearer {enter-api-key-here}' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "full_name": "John Smith",
+    "business_name": "Revolut"
+}'
+```
+
+***EXPECTED RESPONSE***
+
+You are returned with JSON including multiple parameters of the updated customer.
+
+#### Example response body
+
+```json
+{
+  "id": "6c7c97a8-cfc1-4cf3-8b38-26a74fdf1fae",
+  "full_name": "John Smith",
+  "business_name": "Revolut",
+  "email": "john@doe.com",
+  "created_at": "2022-07-03T12:53:19.979397Z",
+  "updated_at": "2022-07-03T12:53:19.979397Z"
+}
+```
+
+***RESULT***
+
+Your customer's second name has been updated and he has a business name now.
+
+## Delete the customer
+
+Optionally you can delete your customer. For details on what is required to make a call for deleting your a customer, navigate to the [Delete a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/deleteCustomer) reference.
+
+1. Identify the following:
+
+   * HTTP request method to be used (`DELETE`)
+   * `customer` endpoint string (`https://sandbox-merchant.revolut.com/api/1.0/customers/{customer_id}`).
+   * Path parameter required (string): `customer_id`
+
+2. In your terminal, enter the request with the parameter and the header properly configured. Execute it.
+
+```shell
+curl --request DELETE 'https://sandbox-merchant.revolut.com/api/1.0/customers/{enter-customer_id-here}' \
+--header 'Authorization: Bearer {enter-api-key-here}'
+```
+
+***EXPECTED RESPONSE***
+
+If your customer has been identified and deleted, you get no response. If your customer has not been found, you are returned the following response:
+
+```json
+{
+"errorId": "string",
+"timestamp": 0
+}
+```
+
+***RESULT***
+
+Your customer has been deleted and is no longer available in your [Revolut Business Sandbox portal](https://sandbox-business.revolut.com/signin).
