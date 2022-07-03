@@ -36,7 +36,7 @@ Make sure you have an active Revolut Business Sandbox account. If not, [sign up 
    
 3. From the **API** section, select **Merchant API**.
 
-   ![merchant api](merchant-api.png)
+   ![settings](company-settings.png)
 
 4. From the **Production API key** field, copy the API key provided.
 
