@@ -12,9 +12,9 @@ As a Revolut Business customer, you can use the Merchant API to accept online pa
 
 You'll use the [Revolut Business Sandbox](https://sandbox-business.revolut.com/signin) environment to perform a few customer management operations using Merchant API:
 
-1. [Authenticate](#authenticate).
+1. [Authenticate](#authenticate-to-the-sandbox).
 2. [Create a new customer](#create-a-customer).
-3. [Retrieve the customer](#retrieve-the-customer).
+3. [Retrieve the customer](#retrieve-the-new-customer).
 4. [Update the customer](#update-the-customer).
 5. [Delete the customer](#delete-the-customer).
 
