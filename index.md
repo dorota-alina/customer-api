@@ -4,9 +4,11 @@ author: Dorota Wojcik
 date: 2022-06-29
 ---
 
+# Customer management API guide
+
 ## About customer management
 
-As a Revolut Business customer, you can use the Merchant API to accept online payments (Card Not Present) by debit or credit cards, and also to manage the orders and customers.
+As a Revolut Business customer, you can use [Merchant API](https://developer.revolut.com/docs/api-reference/merchant/) to accept online payments and  manage orders and customers.
 
 ## In this guide
 
