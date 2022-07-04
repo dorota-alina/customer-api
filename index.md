@@ -4,7 +4,7 @@ author: Dorota Wojcik
 date: 2022-06-29
 ---
 
-# Customer management API guide
+# Managing customers with Merchant API
 
 ## About customer management
 
@@ -219,3 +219,10 @@ If your customer has been identified and deleted, you get no response. If your c
 ***RESULT***
 
 Your customer has been deleted and is no longer available in your [Revolut Business Sandbox portal](https://sandbox-business.revolut.com/signin).
+
+## Follow up
+
+Check out what else you can do using Merchant API:
+
+* To perform other operations on your customer(s), see [Customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/createCustomer).
+* For guidelines on how to manage your payments or orders, see [Merchant API](https://developer.revolut.com/docs/api-reference/merchant/).
