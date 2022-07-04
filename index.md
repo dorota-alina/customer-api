@@ -6,13 +6,11 @@ date: 2022-06-29
 
 # Managing customers with Merchant API
 
-## About customer management
-
-As a Revolut Business customer, you can use [Merchant API](https://developer.revolut.com/docs/api-reference/merchant/) to accept online payments and  manage orders and customers.
+To accept online payments and manage orders and customers, a Revolut Business customer can use either the Revolut Busines portal or [Merchant API](https://developer.revolut.com/docs/api-reference/merchant/).
 
 ## In this guide
 
-You'll use the [Revolut Business Sandbox](https://sandbox-business.revolut.com/signin) environment to perform a few customer management operations using Merchant API:
+In this guide, you'll learn how to manage your customer(s) with [Merchant API](https://developer.revolut.com/docs/api-reference/merchant/). You'll use the [Revolut Business Sandbox](https://sandbox-business.revolut.com/signin) environment to perform the following operations:
 
 1. [Authenticate](#authenticate-to-the-sandbox).
 2. [Create a new customer](#create-a-customer).
