@@ -42,7 +42,7 @@ Make sure you have an active Revolut Business Sandbox account. If not, [sign up 
 
 ***RESULT***
 
-You have your API key, which needs to be used as a value of the `Authorization` header of requests on your server side.
+You have your API key, which needs to be used as a value of the `Authorization` header of your requests.
 
 ### Identify a domain for endpoints
 
@@ -50,7 +50,7 @@ Set the domain for your sandbox API calls to `sandbox-merchant.revolut.com/`.
 
 ## Create a customer
 
-With your API key and domain, you can proceed to creating a new customer.
+With your API key and domain, you can proceed to create a new customer.
 
 Navigate to the [Create a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/createCustomer) reference for details on what is required to make a call for adding a customer.
 
@@ -188,7 +188,7 @@ Your customer's second name has been updated and he has a business name now.
 
 ## Delete the customer
 
-Optionally you can delete your customer. For details on what is required to make a call for deleting your a customer, navigate to the [Delete a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/deleteCustomer) reference.
+Optionally you can delete your customer. For details on what is required to make a call for deleting your customer, navigate to the [Delete a customer API](https://developer.revolut.com/docs/api-reference/merchant/#tag/Customers/operation/deleteCustomer) reference.
 
 1. Identify the following:
 
